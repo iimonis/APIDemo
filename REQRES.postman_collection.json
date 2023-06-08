@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "ca4e339f-44d5-43b3-9aa0-03f91830192d",
+		"name": "REQRES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7629404",
+		"_collection_link": "https://bold-meadow-608727.postman.co/workspace/ibm_batch1_may_2023~8222ca3c-77be-43c2-b5f3-10b5273ca13f/collection/7629404-ca4e339f-44d5-43b3-9aa0-03f91830192d?action=share&creator=7629404&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "ListUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"TC_01: verify Status Code\", function () {\r",
+							"\r",
+							"    console.log('verify status code......')\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_02: verify content body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"michael.lawson@reqres.in\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03: verify specific value using JSONpath\", function () {\r",
+							"    var x = pm.response.json();\r",
+							"    pm.expect(x.data[4].email).to.eql(\"george.edwards@reqres.in\");\r",
+							"    pm.expect(x.data[5].email).to.eql(\"rachel.howell@reqres.in\");\r",
+							"    pm.expect(x.data[3].email).to.eql(\"byron.fields@reqres.in\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04: Response time should be less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"TC_01: verify Status Code\", function () {\r",
+							"\r",
+							"    console.log('verify status code......')\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_02: verify content body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"balaji\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03: verify specific value using JSONpath\", function () {\r",
+							"    var x = pm.response.json();\r",
+							"    pm.expect(x.job).to.eql(\"leader\");\r",
+							"    pm.expect(x.name).to.eql(\"balaji\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04: Response time should be less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n    \"name\": \"balaji\",\r\n    \"job\": \"leader\"\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"TC_01: verify Status Code\", function () {\r",
+							"\r",
+							"    console.log('verify status code......')\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_02: verify content body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"balaji\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03: verify specific value using JSONpath\", function () {\r",
+							"    var x = pm.response.json();\r",
+							"    pm.expect(x.job).to.eql(\"leader\");\r",
+							"    pm.expect(x.name).to.eql(\"balaji\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04: Response time should be less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n    \"name\": \"balaji\",\r\n    \"job\": \"leader\"\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"TC_01: verify Status Code\", function () {\r",
+							"\r",
+							"    console.log('verify status code......')\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_04: Response time should be less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
